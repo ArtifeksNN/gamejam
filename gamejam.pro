@@ -40,21 +40,7 @@ RESOURCES += #    resources.qrc # uncomment for publishing
 # The .cpp file which was generated for your project. Feel free to hack it.
 SOURCES += main.cpp
 
-
-android {
-    ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
-    OTHER_FILES += android/AndroidManifest.xml       android/build.gradle
-}
-
-ios {
-    QMAKE_INFO_PLIST = ios/Project-Info.plist
-    OTHER_FILES += $$QMAKE_INFO_PLIST
-}
-
 # set application icons for win and macx
 win32 {
     RC_FILE += win/app_icon.rc
-}
-macx {
-    ICON = macx/app_icon.icns
 }
