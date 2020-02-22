@@ -4,11 +4,11 @@ import QtQuick 2.13
 TiledEntityBase {
   id: root
 
-  entityType: "ground"
+  entityType: "water"
 
   Rectangle {
     id: rectangle
-    color: "green"
+    color: "blue"
     anchors.fill: parent
   }
 
@@ -16,6 +16,6 @@ TiledEntityBase {
     id: collider
 
     anchors.fill: parent
-    bodyType: Body.Static // the body shouldnt move
+    bodyType: Body.Static
   }
 }

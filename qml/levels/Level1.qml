@@ -15,9 +15,27 @@ Item {
         size: 6
     }
 
-    Ground {
-        row: 8
+    Wall {
+        row: 5
+        column: 3
+        size: 3
+    }
+
+    Platforma {
+        row: 5
+        column: 4
+        size: 7
+    }
+
+    Water {
+        row: 6
         column: 0
-        size: 500
+        size: 4
+    }
+
+    Ground {
+        row: 10
+        column: 0
+        size: 300
     }
 }

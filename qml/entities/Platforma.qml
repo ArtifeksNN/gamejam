@@ -4,14 +4,12 @@ import QtQuick 2.13
 TiledEntityBase {
   id: root
 
-  entityType: "wall"
-
-  width: gameScene.gridSize
-  height: gameScene.gridSize * size
+  entityType: "platforma"
 
   Rectangle {
     id: rectangle
-    color: "brown"
+
+    color: "#252933"
     anchors.fill: parent
   }
 

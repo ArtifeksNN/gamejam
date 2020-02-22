@@ -60,8 +60,6 @@ Scene {
             //                                            Qt.point(controller.xAxis*170*32,0)
 
             //        maxSpeed: gameScene.isSlowMode ? 10 : 100
-
-
         }
     }
 
@@ -80,7 +78,7 @@ Scene {
           onInputActionPressed: {
             console.debug("key pressed actionName " + actionName)
             if(actionName == "up") {
-    //          player.jump()
+              player.moveUp()
                 console.debug("up")
             }
           }

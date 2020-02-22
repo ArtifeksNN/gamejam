@@ -8,7 +8,7 @@ TiledEntityBase {
 
   Rectangle {
     id: rectangle
-    color: "green"
+    color: "#f5e98d"
     anchors.fill: parent
   }
 
@@ -16,6 +16,6 @@ TiledEntityBase {
     id: collider
 
     anchors.fill: parent
-    bodyType: Body.Static // the body shouldnt move
+    bodyType: Body.Static
   }
 }

@@ -10,15 +10,24 @@ EntityBase {
     width: 232
     height: 139
 
-    property int variation: 1
-
     property alias collider: collider
     property alias horizontalVelocity: collider.linearVelocity.x
 
     property var maxSpeed: 100
 
-    function moveRight() {
-        collider.moveRight()
+    property int contacts: 0
+
+    onContactsChanged: {
+        console.log("contact sum", contacts)
+        if (contacts === 0) {
+            collider.linearVelocity.y = 0
+            collider.linearVelocity.x = 0
+        }
+    }
+
+    function moveUp() {
+        collider.linearVelocity.y = -100
+//        player.rotation = -90
     }
 
     SpriteSequence {
@@ -95,10 +104,29 @@ EntityBase {
       sleepingAllowed: false
       force: Qt.point(controller.xAxis*170*32,0)
 
-
       onLinearVelocityChanged: {
         if(linearVelocity.x > maxSpeed) linearVelocity.x = maxSpeed
         if(linearVelocity.x < -maxSpeed) linearVelocity.x = -maxSpeed
+      }
+
+      fixture.onBeginContact: {
+        var otherEntity = other.getBody().target
+        if(otherEntity.entityType === "ground") {
+            console.debug("contact platform begin", otherEntity.y, otherEntity.height)
+
+          // increase the number of active contacts the player has
+          player.contacts++
+        }
+      }
+
+      fixture.onEndContact: {
+        var otherEntity = other.getBody().target
+        if(otherEntity.entityType === "ground") {
+          console.debug("contact platform end", otherEntity.y, otherEntity.height)
+
+          // if the player leaves a platform, we decrease its number of active contacts
+          player.contacts--
+        }
       }
 
 //      Timer {
