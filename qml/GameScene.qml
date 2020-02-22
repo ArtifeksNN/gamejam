@@ -73,6 +73,10 @@ Scene {
         if (event.key === Qt.Key_D) {
             player.moveRight()
         }
+
+        if (event.key === Qt.Key_A) {
+            player.moveLeft()
+        }
     }
 
     Keys.onReleased: {

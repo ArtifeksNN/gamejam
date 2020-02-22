@@ -2,6 +2,8 @@ import Felgo 3.0
 import Felgo 3.0 as Felgo
 import QtQuick 2.13
 
+import "../common"
+
 EntityBase {
     id: player
 
@@ -16,8 +18,16 @@ EntityBase {
     property var maxSpeed: 100
     property int contacts: 0
 
+    property bool isMoveRight: true
+
     function moveRight() {
-        moveAnimation.start()
+        isMoveRight = true
+        sideAnimation.startAnimation()
+    }
+
+    function moveLeft() {
+        isMoveRight = false
+        sideAnimation.startAnimation()
     }
 
     MultiResolutionImage {
@@ -25,76 +35,12 @@ EntityBase {
 
         source: "../../assets/ulitka_idle.png"
         visible: true
-//        mirror: true
-
-//        transform: Scale{ xScale: -1 }
     }
 
-    SequentialAnimation {
-        id: moveAnimation
-
-        ScriptAction {
-            script: {
-                idle.visible = false
-                seqImage.visible = true
-                seqImage.jumpTo("forward1");
-                seqImage.goalSprite = "forward3";
-                collider.force = Qt.point(1500, 0)
-            }
-        }
-        NumberAnimation { duration: 700; }
-        ScriptAction {
-            script: {
-                seqImage.goalSprite = "";
-                collider.force = Qt.point(0, 0)
-                player.horizontalVelocity = 0
-                seqImage.visible = false
-                idle.visible = true
-            }
-        }
-    }
-
-    SpriteSequence {
-        id: seqImage
-
-        width: 232
-        height: 139
-
-        visible: false
+    PlayerSideAnimation {
+        id: sideAnimation
 
         anchors.horizontalCenter: parent.horizontalCenter
-        interpolate: false
-
-        Sprite{
-            name: "forward1"
-            source: "../../assets/ulitka_forward_01.png"
-            frameCount: 1
-            frameWidth: 232
-            frameHeight: 139
-            frameDuration: 100
-            to: { "forward2":1 }
-        }
-
-        Sprite{
-            name: "forward2"
-            source: "../../assets/ulitka_forward_02.png"
-            frameCount: 1
-            frameWidth: 232
-            frameHeight: 139
-            frameDuration: 300
-            to: {"forward3":1}
-
-        }
-
-        Sprite{
-            name: "forward3"
-            source: "../../assets/ulitka_forward_03.png"
-            frameCount: 1
-            frameWidth: 232
-            frameHeight: 139
-            frameDuration: 200
-            to: {"forward3":0}
-        }
     }
 
     BoxCollider {
