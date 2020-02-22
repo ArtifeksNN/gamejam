@@ -1,6 +1,8 @@
 import Felgo 3.0
 import QtQuick 2.13
+
 import "entities"
+import "common"
 
 Scene {
     id: gameScene
@@ -15,43 +17,11 @@ Scene {
       id: entityManager
     }
 
-    Rectangle {
-        id: skyRect
+    FarBackground {
+        id: farBackground
 
-        width: parent.width * 3
-        height: parent.width * 3
-
-        anchors {
-            horizontalCenter: parent.horizontalCenter
-            verticalCenter: parent.bottom + 100
-        }
-
-        radius: width / 2
-
-//        Behavior on rotation {NumberAnimation{duration:250}}
-
-        MultiResolutionImage {
-            anchors.fill: parent
-            source: "../assets/sky_06.jpg"
-        }
-    }
-
-    Timer {
-        id: fastTimer
-
-        interval: 16
-        repeat: true
-        running: !gameScene.isSlowMode
-        onTriggered: skyRect.rotation + 2
-    }
-
-    Timer {
-        id: lowTimer
-
-        interval: 16
-        repeat: true
-        running: gameScene.isSlowMode
-        onTriggered: skyRect.rotation++
+        anchors.fill: parent
+        isFocusMode: isSlowMode
     }
 
     PhysicsWorld {
@@ -69,7 +39,7 @@ Scene {
             left: gameScene.left
             right: gameScene.right
         }
-        height: 15
+        height: 150
     }
 
     Player {
