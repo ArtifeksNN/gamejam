@@ -19,7 +19,7 @@ Item {
 
         radius: width / 2
 
-        Behavior on rotation { NumberAnimation { duration:100 } }
+        Behavior on rotation { NumberAnimation { duration: 10 } }
 
         MultiResolutionImage {
             anchors.fill: parent
@@ -45,7 +45,7 @@ Item {
         interval: 16
         repeat: true
         running: !isFocusMode
-        onTriggered: skyRect.rotation + 2
+        onTriggered: skyRect.rotation = skyRect.rotation + 2
     }
 
     Timer {
@@ -54,6 +54,6 @@ Item {
         interval: 16
         repeat: true
         running: isFocusMode
-        onTriggered: skyRect.rotation++
+        onTriggered: skyRect.rotation = skyRect.rotation + 0.01
     }
 }

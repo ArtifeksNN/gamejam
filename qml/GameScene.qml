@@ -8,7 +8,7 @@ import "levels"
 Scene {
     id: gameScene
 
-    property bool isSlowMode: true
+    property bool isFocusMode: false
 
     width: 1280
     height: 720
@@ -25,7 +25,7 @@ Scene {
         id: farBackground
 
         anchors.fill: parent
-        isFocusMode: isSlowMode
+        isFocusMode: gameScene.isFocusMode
     }
 
     Item {
@@ -56,31 +56,26 @@ Scene {
 
             x: 20
             y: 20
+//            transform: Scale { xScale: -1 }
             //        playerForce: gameScene.isSlowMode ? Qt.point(controller.xAxis*17*8,0) :
             //                                            Qt.point(controller.xAxis*170*32,0)
 
-            //        maxSpeed: gameScene.isSlowMode ? 10 : 100
+            maxSpeed: gameScene.isFocusMode ? 10 : 100
         }
     }
-
-    Keys.forwardTo: controller
 
     Keys.onPressed: {
         if (event.key === Qt.Key_Space) {
-            console.log("space click")
-            gameScene.isSlowMode = !gameScene.isSlowMode
+            gameScene.isFocusMode = !gameScene.isFocusMode
+            console.log("focus mode", gameScene.isFocusMode)
+        }
+
+        if (event.key === Qt.Key_D) {
+            player.moveRight()
         }
     }
 
-        TwoAxisController {
-          id: controller
+    Keys.onReleased: {
 
-          onInputActionPressed: {
-            console.debug("key pressed actionName " + actionName)
-            if(actionName == "up") {
-              player.moveUp()
-                console.debug("up")
-            }
-          }
-        }
+    }
 }

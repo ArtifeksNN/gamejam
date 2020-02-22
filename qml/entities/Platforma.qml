@@ -4,7 +4,7 @@ import QtQuick 2.13
 TiledEntityBase {
   id: root
 
-  entityType: "platforma"
+  entityType: "platform"
 
   Rectangle {
     id: rectangle

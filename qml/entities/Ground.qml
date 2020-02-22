@@ -17,5 +17,6 @@ TiledEntityBase {
 
     anchors.fill: parent
     bodyType: Body.Static
+    friction: 1.0
   }
 }
