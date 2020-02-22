@@ -1,31 +1,20 @@
 import Felgo 3.0
-import QtQuick 2.0
+import QtQuick 2.13
 
 EntityBase {
-  id: tiledEntity
+  id: root
 
   entityType: "ground"
 
-  property int column: 0
-  property int row: 0
-  property int size: 2 // gets set in Platform.qml and Ground.qml
-
-  // instead of directly modifying the x and y values of your tiles, we introduced rows and columns for easier positioning, have a look at Level1.qml on how they are used
-  x: row*gameScene.gridSize
-  y: level.height - (column+1)*gameScene.gridSize
-  width: gameScene.gridSize * size
-  height: gameScene.gridSize
+  Rectangle {
+    id: rectangle
+    color: "green"
+    anchors.fill: parent
+  }
 
   BoxCollider {
+    id: collider
     anchors.fill: parent
-    bodyType: Body.Static
-//    fixture.onBeginContact: {
-//      var otherEntity = other.getBody().target
-//      if(otherEntity.entityType === "player") player.contacts++
-//    }
-//    fixture.onEndContact: {
-//      var otherEntity = other.getBody().target
-//      if(otherEntity.entityType === "player") player.contacts--
-//    }
+    bodyType: Body.Static // the body shouldnt move
   }
 }
