@@ -3,18 +3,22 @@ import QtQuick 2.13
 
 import "entities"
 import "common"
+import "levels"
 
 Scene {
     id: gameScene
 
     property bool isSlowMode: true
 
-    width: 960
-    height: 640
+    width: 1280
+    height: 720
+
     gridSize: 64
 
+    property int offsetBeforeScrollingStarts: 240
+
     EntityManager {
-      id: entityManager
+        id: entityManager
     }
 
     FarBackground {
@@ -24,35 +28,41 @@ Scene {
         isFocusMode: isSlowMode
     }
 
-    PhysicsWorld {
-      id: physicsWorld
+    Item {
+        id: viewPort
 
-      gravity.y: 9.81
-      debugDrawVisible: true
+        height: level.height
+        width: level.width
+        anchors.bottom: gameScene.gameWindowAnchorItem.bottom
 
-      updatesPerSecondForPhysics: 60
-    }
+        x: player.x > offsetBeforeScrollingStarts ?
+               offsetBeforeScrollingStarts - player.x : 0
 
-    Ground {
-        anchors {
-            bottom: gameScene.bottom
-            left: gameScene.left
-            right: gameScene.right
+        PhysicsWorld {
+            id: physicsWorld
+
+            gravity.y: 9.81
+            debugDrawVisible: true
+
+            updatesPerSecondForPhysics: 60
         }
-        height: 150
-    }
 
-    Player {
-        id: player
+        Level1 {
+            id: level
+        }
 
-        x: 20
-        y: 20
-//        playerForce: gameScene.isSlowMode ? Qt.point(controller.xAxis*17*8,0) :
-//                                            Qt.point(controller.xAxis*170*32,0)
+        Player {
+            id: player
 
-//        maxSpeed: gameScene.isSlowMode ? 10 : 100
+            x: 20
+            y: 20
+            //        playerForce: gameScene.isSlowMode ? Qt.point(controller.xAxis*17*8,0) :
+            //                                            Qt.point(controller.xAxis*170*32,0)
+
+            //        maxSpeed: gameScene.isSlowMode ? 10 : 100
 
 
+        }
     }
 
     Keys.forwardTo: controller
@@ -64,15 +74,15 @@ Scene {
         }
     }
 
-    TwoAxisController {
-      id: controller
+        TwoAxisController {
+          id: controller
 
-      onInputActionPressed: {
-        console.debug("key pressed actionName " + actionName)
-        if(actionName == "up") {
-//          player.jump()
-            console.debug("up")
+          onInputActionPressed: {
+            console.debug("key pressed actionName " + actionName)
+            if(actionName == "up") {
+    //          player.jump()
+                console.debug("up")
+            }
+          }
         }
-      }
-    }
 }

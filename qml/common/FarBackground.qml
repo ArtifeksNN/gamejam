@@ -32,7 +32,7 @@ Item {
             left: parent.left
             right: parent.right
             bottom: parent.bottom
-            bottomMargin: -20
+            bottomMargin: -80
         }
 
         fillMode: Image.PreserveAspectFit

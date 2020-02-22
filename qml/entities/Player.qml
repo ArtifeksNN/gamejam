@@ -7,14 +7,13 @@ EntityBase {
 
     entityType: "player"
 
-    width: 100
-    height: 100
+    width: 232
+    height: 139
 
     property int variation: 1
 
     property alias collider: collider
     property alias horizontalVelocity: collider.linearVelocity.x
-//    property alias playerForce: collider.force
 
     property var maxSpeed: 100
 
@@ -29,7 +28,7 @@ EntityBase {
         height: 139
 
         anchors.horizontalCenter: parent.horizontalCenter
-        interpolate: false
+        interpolate: true
 
         Sprite{
             name: "idle_begin"
@@ -57,7 +56,7 @@ EntityBase {
             frameCount: 1
             frameWidth: 232
             frameHeight: 139
-            frameDuration: 100
+            frameDuration: 300
             to: {"forward3":1}
 
         }
@@ -94,21 +93,21 @@ EntityBase {
       fixedRotation: true // we are running, not rolling...
       bullet: true // for super accurate collision detection, use this sparingly, because it's quite performance greedy
       sleepingAllowed: false
+      force: Qt.point(controller.xAxis*170*32,0)
+
 
       onLinearVelocityChanged: {
         if(linearVelocity.x > maxSpeed) linearVelocity.x = maxSpeed
         if(linearVelocity.x < -maxSpeed) linearVelocity.x = -maxSpeed
       }
 
-      Timer {
-        repeat: true
-        running: true
-        interval: 10 // for 30 updates per second
-        onTriggered: {
-            console.log('move')
-          // apply a force towards the world position 100/0 every 33ms
-          collider.body.applyForce(Qt.point(controller.xAxis*170*32,0), collider.body.getWorldCenter() );
-        }
-      }
+//      Timer {
+//        repeat: true
+//        running: true
+//        interval: 100
+//        onTriggered: {
+//          collider.body.applyForceToCenter(Qt.point(200,0));
+//        }
+//      }
     }
 }
