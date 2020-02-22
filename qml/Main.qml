@@ -17,4 +17,10 @@ GameWindow {
       source: ""
       volume: 0.5
     }
+
+    activeScene: gameScene //temp
+
+    GameScene {
+        id: gameScene
+    }
 }
