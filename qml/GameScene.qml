@@ -58,7 +58,7 @@ Scene {
             id: physicsWorld
 
             gravity.y: 9.81
-            debugDrawVisible: true
+            debugDrawVisible: false
 
             updatesPerSecondForPhysics: 1000
         }
