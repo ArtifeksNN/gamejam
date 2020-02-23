@@ -11,6 +11,8 @@ GameWindow {
 
     state: "main"
 
+    activeScene: gameScene
+
     BackgroundMusic {
       id: backgroundMusic
 
@@ -18,9 +20,8 @@ GameWindow {
       volume: 0.5
     }
 
-    activeScene: gameScene //temp
-
     GameScene {
         id: gameScene
+        anchors.fill: parent
     }
 }

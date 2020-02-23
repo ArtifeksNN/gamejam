@@ -25,17 +25,48 @@ Item {
             anchors.fill: parent
             source: "../../assets/sky_06.jpg"
         }
+
+        Rectangle {
+            id: sun
+
+            anchors {
+                left: parent.left
+                top: parent.top
+                leftMargin: 1280
+                topMargin: 720
+            }
+
+            width: 200
+            height: width
+            radius: width / 2
+            color: "red"
+        }
+
+
+        Rectangle {
+            id: moon
+
+            anchors {
+                horizontalCenter: parent.horizontalCenter
+            }
+
+            width: 40
+            height: width
+            radius: width / 2
+            color: "blue"
+        }
     }
 
     MultiResolutionImage {
         anchors {
-            left: parent.left
-            right: parent.right
+            horizontalCenter: parent.horizontalCenter
+//            left: parent.left
+//            right: parent.right
             bottom: parent.bottom
             bottomMargin: -80
         }
 
-        fillMode: Image.PreserveAspectFit
+        fillMode: Image.TileHorizontally
         source: "../../assets/mountain_project_01.png"
     }
 

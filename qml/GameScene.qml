@@ -10,8 +10,8 @@ Scene {
 
     property bool isFocusMode: false
 
-    width: 1280
-    height: 720
+    width: 960
+    height: 640
 
     gridSize: 64
 
@@ -55,9 +55,31 @@ Scene {
             id: player
 
             x: 20
-            y: 20
+            y: 900
+
+            isFocusMode: gameScene.isFocusMode
 
             maxSpeed: gameScene.isFocusMode ? 10 : 100
+
+            function respawn() {
+                player.x = 20
+                player.y = 900
+                player.health--;
+            }
+
+            onYChanged: {
+                console.log("y", y)
+                if (player.y > 1280) {
+                    console.log("fall", gameScene.height)
+
+                    if (health != 0) {
+                        respawn()
+                    } else {
+                        console.log("game over")
+                    }
+                }
+            }
+            onHealthChanged: console.log("health", player.health)
         }
     }
 

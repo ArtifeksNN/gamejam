@@ -20,6 +20,7 @@ EntityBase {
     property int contacts: 0
 
     property bool isFocusMode: false
+    property int health: 3
 
     onContactsChanged: {
         console.log("contact changed", contacts)
@@ -37,26 +38,30 @@ EntityBase {
 
     function moveRight() {
         isMoveRight = true
-        sideAnimation.startAnimation()
+        if (!isFocusMode) sideAnimation.startAnimation()
+        else focusModeMove()
     }
 
     function moveLeft() {
         isMoveRight = false
-        sideAnimation.startAnimation()
+        if (!isFocusMode) sideAnimation.startAnimation()
+        else focusModeMove()
     }
 
     function moveUp() {
         if (contacts > 0) {
             collider.linearVelocity.y = -100
-//            rotation -= 90
         }
     }
 
     function moveDown() {
         if (contacts > 0) {
-//            collider.linearVelocity.y = -100
-//            rotation += 90
         }
+    }
+
+    function focusModeMove() {
+        collider.force = isMoveRight ?
+                    Qt.point(1500, 0) : Qt.point(-1500, 0)
     }
 
     Timer {
@@ -82,7 +87,7 @@ EntityBase {
     MultiResolutionImage {
         id: idle
 
-        source: "../../assets/ulitka_idle.png"
+        source: isFocusMode ? "../../assets/snail_normal_idle.jpg" : "../../assets/ulitka_idle.png"
         visible: true
     }
 
@@ -96,7 +101,12 @@ EntityBase {
         id: collider
 
         height: player.height
-        width: player.width
+        anchors {
+            right: player.right
+            rightMargin: 40
+            left: player.left
+            leftMargin: 70
+        }
 
         anchors.horizontalCenter: parent.horizontalCenter
 

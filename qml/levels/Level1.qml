@@ -9,6 +9,12 @@ Item {
 
     width: 84 * gameScene.gridSize
 
+    LevelBegin {
+        row: 0
+        column: 3
+        size: 5
+    }
+
     Ground {
         row: 0
         column: 0
@@ -36,6 +42,12 @@ Item {
     Ground {
         row: 10
         column: 0
-        size: 300
+        size: 5
+    }
+
+    LevelEnd {
+        row: 15
+        column: 3
+        size: 1
     }
 }
