@@ -18,35 +18,35 @@ Item {
     Ground {
         row: 0
         column: 0
-        size: 6
+        size: 12
     }
 
     Wall {
-        row: 5
+        row: 10
         column: 3
         size: 3
     }
 
     Platforma {
-        row: 5
+        row: 11
         column: 4
         size: 7
     }
 
     Water {
-        row: 6
+        row: 11
         column: 0
-        size: 4
+        size: 6
     }
 
     Ground {
-        row: 10
+        row: 17
         column: 0
         size: 10
     }
 
     LevelEnd {
-        row: 20
+        row: 28
         column: 3
         size: 1
     }

@@ -29,8 +29,8 @@ EntityBase {
     function checkContacts(){
         if (contacts == 0) {
             console.log("contacts zero")
-            collider.force = Qt.point(0, 0)
-            collider.linearVelocity.y = 0
+//            collider.force = Qt.point(0, 0)
+//            collider.linearVelocity.y = 5
         }
     }
 
@@ -51,7 +51,7 @@ EntityBase {
     function moveUp() {
         if (contacts > 0) {
             if (isFocusMode) collider.linearVelocity.y = -25
-            else collider.linearVelocity.y = -100
+            else collider.linearVelocity.y = -75
         }
     }
 
@@ -62,7 +62,7 @@ EntityBase {
 
     function focusModeMove() {
         collider.force = isMoveRight ?
-                    Qt.point(1500, 0) : Qt.point(-1500, 0)
+                    Qt.point(2500, 0) : Qt.point(-2500, 0)
     }
 
     Timer {

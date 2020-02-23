@@ -51,7 +51,7 @@ Scene {
             gravity.y: 9.81
             debugDrawVisible: false
 
-            updatesPerSecondForPhysics: 60
+            updatesPerSecondForPhysics: 1000
         }
 
         Level1 {
@@ -174,7 +174,7 @@ Scene {
         id: transformTimer
 
         interval: 2000
-        onTriggered: hintTransformPopup.visible = true
+        onTriggered: if (isFocusMode) hintTransformPopup.visible = true
     }
 
     Popup {
