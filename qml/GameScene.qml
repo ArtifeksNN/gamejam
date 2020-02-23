@@ -82,25 +82,27 @@ Scene {
                 player.y = 900
                 player.health--;
             }
+            onXChanged: console.log("x", x)
 
             onYChanged: {
+                console.log("y",y)
                 if (player.y >  level.height) {
-                    if (health !== 0) {
-                        respawn()
-                    } else {
-                        //                        console.log("game over")
-                        showGameOverPopup()
-                    }
+                    respawn()
                 }
             }
-            onHealthChanged: console.log("health", player.health)
+            onHealthChanged: {
+                if (health === 0) {
+                    showGameOverPopup
+                }
+                console.log("health", player.health)
+            }
         }
 
         EntityBase {
             id: enemy
 
-            x: 20//1500
-            y: 900
+            x: 860
+            y: 800
 
             entityType: "enemy"
 
@@ -121,11 +123,17 @@ Scene {
 
                 categories: Box.Category2
                 // collide with players
-                collidesWith: gameScene.isNight ? Box.Category1 | Box.Category3 : Box.Category3
-
+                collidesWith: !gameScene.isNight ? Box.Category1 | Box.Category3 : Box.Category3
 
                 bodyType: Body.Dynamic
                 friction: 1.0
+
+                fixture.onBeginContact: {
+                    if (!isNight) {
+                        player.health--
+                        player.respawn()
+                    }
+                }
             }
         }
     }
@@ -179,10 +187,6 @@ Scene {
 
         if (event.key === Qt.Key_S) {
             player.moveDown()
-        }
-
-        if (event.key === Qt.Key_F) {
-            player.stickTrajectory()
         }
     }
 

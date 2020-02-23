@@ -51,7 +51,7 @@ EntityBase {
     function moveUp() {
         if (contacts > 0) {
             if (isFocusMode) collider.linearVelocity.y = -50
-            else collider.linearVelocity.y = -100
+            else collider.linearVelocity.y = -110
         }
     }
 

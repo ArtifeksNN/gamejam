@@ -31,7 +31,7 @@ Item {
     Platforma {
         row: 10
         column: 3
-        size: 5
+        size: 10
     }
 
 
