@@ -8,7 +8,7 @@ import "levels"
 Scene {
     id: gameScene
 
-    property bool isFocusMode: false
+    property bool isFocusMode: true
     property int offsetBeforeScrollingStarts: 240
 
     width: 960

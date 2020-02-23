@@ -81,10 +81,12 @@ EntityBase {
         else stickForce.stop()
     }
 
-    MultiResolutionImage {
+    Image {
         id: idle
 
-        source: isFocusMode ? "../../assets/snail_normal_idle.jpg" : "../../assets/ulitka_idle.png"
+        anchors.fill: parent
+        anchors.bottomMargin: -10
+        source: isFocusMode ? "../../assets/snail_normal_idle.png" : "../../assets/ulitka_idle.png"
         visible: true
     }
 
