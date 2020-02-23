@@ -12,10 +12,10 @@ TiledEntityBase {
     anchors.fill: parent
   }
 
-  BoxCollider {
-    id: collider
+//  BoxCollider {
+//    id: collider
 
-    anchors.fill: parent
-    bodyType: Body.Static
-  }
+//    anchors.fill: parent
+//    bodyType: Body.Static
+//  }
 }

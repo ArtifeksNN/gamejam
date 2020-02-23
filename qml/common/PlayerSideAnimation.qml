@@ -53,9 +53,9 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
         interpolate: false
 
-        Sprite{
+        Sprite {
             name: "forward1"
-            source: "../../assets/move/ulitka_forward_01_r.png"
+            source: "../../assets/snail_forward/ulitka_forward_01_r.png"
             frameCount: 1
             frameWidth: 232
             frameHeight: 139
@@ -65,7 +65,7 @@ Item {
 
         Sprite{
             name: "forward2"
-            source: "../../assets/move/ulitka_forward_02_r.png"
+            source: "../../assets/snail_forward/ulitka_forward_02_r.png"
             frameCount: 1
             frameWidth: 232
             frameHeight: 139
@@ -76,7 +76,7 @@ Item {
 
         Sprite{
             name: "forward3"
-            source: "../../assets/move/ulitka_forward_03_r.png"
+            source: "../../assets/snail_forward/ulitka_forward_03_r.png"
             frameCount: 1
             frameWidth: 232
             frameHeight: 139
@@ -98,7 +98,7 @@ Item {
 
         Sprite{
             name: "forward1"
-            source: "../../assets/move/ulitka_forward_01_l.png"
+            source: "../../assets/snail_forward/ulitka_forward_01_l.png"
             frameCount: 1
             frameWidth: 232
             frameHeight: 139
@@ -108,7 +108,7 @@ Item {
 
         Sprite{
             name: "forward2"
-            source: "../../assets/move/ulitka_forward_02_l.png"
+            source: "../../assets/snail_forward/ulitka_forward_02_l.png"
             frameCount: 1
             frameWidth: 232
             frameHeight: 139
@@ -119,7 +119,7 @@ Item {
 
         Sprite{
             name: "forward3"
-            source: "../../assets/move/ulitka_forward_03_l.png"
+            source: "../../assets/snail_forward/ulitka_forward_03_l.png"
             frameCount: 1
             frameWidth: 232
             frameHeight: 139

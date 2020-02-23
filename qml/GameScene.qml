@@ -56,9 +56,6 @@ Scene {
 
             x: 20
             y: 20
-//            transform: Scale { xScale: -1 }
-            //        playerForce: gameScene.isSlowMode ? Qt.point(controller.xAxis*17*8,0) :
-            //                                            Qt.point(controller.xAxis*170*32,0)
 
             maxSpeed: gameScene.isFocusMode ? 10 : 100
         }
@@ -76,6 +73,19 @@ Scene {
 
         if (event.key === Qt.Key_A) {
             player.moveLeft()
+        }
+
+        if (event.key === Qt.Key_W) {
+            player.moveUp()
+        }
+
+
+        if (event.key === Qt.Key_S) {
+            player.moveDown()
+        }
+
+        if (event.key === Qt.Key_F) {
+            player.stickTrajectory()
         }
     }
 

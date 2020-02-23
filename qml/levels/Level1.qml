@@ -15,11 +15,11 @@ Item {
         size: 6
     }
 
-//    Wall {
-//        row: 5
-//        column: 3
-//        size: 3
-//    }
+    Wall {
+        row: 5
+        column: 3
+        size: 3
+    }
 
     Platforma {
         row: 5
