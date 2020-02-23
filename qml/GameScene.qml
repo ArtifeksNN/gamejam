@@ -9,13 +9,20 @@ Scene {
     id: gameScene
 
     property bool isFocusMode: false
+    property int offsetBeforeScrollingStarts: 240
 
     width: 960
     height: 640
 
     gridSize: 64
 
-    property int offsetBeforeScrollingStarts: 240
+    function showGameOverPopup() {
+        gameOverPopup.visible = true
+    }
+
+    function showWinPopup() {
+        winPopup.visible = true
+    }
 
     EntityManager {
         id: entityManager
@@ -42,7 +49,7 @@ Scene {
             id: physicsWorld
 
             gravity.y: 9.81
-            debugDrawVisible: true
+            debugDrawVisible: false
 
             updatesPerSecondForPhysics: 60
         }
@@ -68,18 +75,43 @@ Scene {
             }
 
             onYChanged: {
-                console.log("y", y)
-                if (player.y > 1280) {
-                    console.log("fall", gameScene.height)
-
-                    if (health != 0) {
+                if (player.y >  level.height) {
+                    if (health !== 0) {
                         respawn()
                     } else {
-                        console.log("game over")
+//                        console.log("game over")
+                        showGameOverPopup()
                     }
                 }
             }
             onHealthChanged: console.log("health", player.health)
+        }
+    }
+
+
+    Row {
+        id: health
+
+        anchors {
+            left: parent.left
+            bottom: parent.bottom
+        }
+
+        spacing: 10
+        Repeater {
+            model: player.health
+            delegate: Rectangle {
+                width: 40
+                height: 40
+                color: "red"
+
+                Text {
+                    text: "+"
+                    anchors.centerIn: parent
+                    font.pixelSize: 32
+                    color: "white"
+                }
+            }
         }
     }
 
@@ -101,7 +133,6 @@ Scene {
             player.moveUp()
         }
 
-
         if (event.key === Qt.Key_S) {
             player.moveDown()
         }
@@ -113,5 +144,19 @@ Scene {
 
     Keys.onReleased: {
 
+    }
+
+    Popup {
+        id: gameOverPopup
+
+        popupText: "GAME OVER"
+        popupPicture: "../assets/snail_f_death/snail_f_death.png"
+    }
+
+    Popup {
+        id: winPopup
+
+        popupText: "YOU WIN"
+        popupPicture: "../assets/snail_f_hit/snail_f_hit.png"
     }
 }

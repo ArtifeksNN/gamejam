@@ -42,11 +42,11 @@ Item {
     Ground {
         row: 10
         column: 0
-        size: 5
+        size: 10
     }
 
     LevelEnd {
-        row: 15
+        row: 20
         column: 3
         size: 1
     }

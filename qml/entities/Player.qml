@@ -50,7 +50,8 @@ EntityBase {
 
     function moveUp() {
         if (contacts > 0) {
-            collider.linearVelocity.y = -100
+            if (isFocusMode) collider.linearVelocity.y = -25
+            else collider.linearVelocity.y = -100
         }
     }
 
@@ -70,16 +71,12 @@ EntityBase {
         repeat: true
         interval: 75
         onTriggered:{
-//            collider.linearVelocity.y = -25
-
             var localForwardVector = collider.body.toWorldVector(Qt.point(0,90));
             collider.body.applyLinearImpulse(localForwardVector, collider.body.getWorldCenter());
         }
     }
 
     function stickTrajectory(center) {
-        console.log("stick traj", center)
-
         if (!stickForce.running) stickForce.start()
         else stickForce.stop()
     }

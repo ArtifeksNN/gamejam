@@ -18,7 +18,7 @@ TiledEntityBase {
         fixture.onBeginContact: {
             var otherEntity = other.getBody().target
             if (otherEntity.entityType === "player") {
-                console.log("finish")
+                gameScene.showWinPopup()
             }
         }
     }
