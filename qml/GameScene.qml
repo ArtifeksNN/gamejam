@@ -116,7 +116,9 @@ Scene {
     }
 
     Keys.onPressed: {
+        hintMovePopup.visible = false
         if (event.key === Qt.Key_Space) {
+            hintTransformPopup.visible = false
             gameScene.isFocusMode = !gameScene.isFocusMode
             console.log("focus mode", gameScene.isFocusMode)
         }
@@ -158,5 +160,26 @@ Scene {
 
         popupText: "YOU WIN"
         popupPicture: "../assets/snail_f_hit/snail_f_hit.png"
+    }
+
+    Popup {
+        id: hintMovePopup
+
+        popupText: "Use'W', 'A' and 'D' to move"
+        visible: true
+        onVisibleChanged: if (visible === false) transformTimer.start()
+    }
+
+    Timer {
+        id: transformTimer
+
+        interval: 2000
+        onTriggered: hintTransformPopup.visible = true
+    }
+
+    Popup {
+        id: hintTransformPopup
+
+        popupText: "Use Key 'Space' to trasform"
     }
 }
