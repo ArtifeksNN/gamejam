@@ -14,6 +14,7 @@ TiledEntityBase {
 
         anchors.fill: parent
         bodyType: Body.Static
+        categories: Box.Category3
 
         fixture.onBeginContact: {
             var otherEntity = other.getBody().target

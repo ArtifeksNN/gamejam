@@ -50,8 +50,8 @@ EntityBase {
 
     function moveUp() {
         if (contacts > 0) {
-            if (isFocusMode) collider.linearVelocity.y = -25
-            else collider.linearVelocity.y = -75
+            if (isFocusMode) collider.linearVelocity.y = -50
+            else collider.linearVelocity.y = -100
         }
     }
 
@@ -62,7 +62,7 @@ EntityBase {
 
     function focusModeMove() {
         collider.force = isMoveRight ?
-                    Qt.point(2500, 0) : Qt.point(-2500, 0)
+                    Qt.point(1500, 0) : Qt.point(-1500, 0)
     }
 
     Timer {
@@ -100,6 +100,9 @@ EntityBase {
         id: collider
 
         height: player.height
+        categories: Box.Category1
+        collidesWith: Box.Category2 | Box.Category3
+
         anchors {
             right: player.right
             rightMargin: 40

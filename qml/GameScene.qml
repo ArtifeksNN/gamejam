@@ -12,8 +12,12 @@ Scene {
     property int offsetBeforeScrollingStarts: 240
     property bool isNight: true
 
+    Component.onCompleted: enemyAnimation.startAnimation()
+
     onIsNightChanged: {
         console.log("day night change", isNight)
+        enemyAnimation.stopAnimation()
+        enemyAnimation.startAnimation()
     }
 
     width: 960
@@ -84,12 +88,45 @@ Scene {
                     if (health !== 0) {
                         respawn()
                     } else {
-//                        console.log("game over")
+                        //                        console.log("game over")
                         showGameOverPopup()
                     }
                 }
             }
             onHealthChanged: console.log("health", player.health)
+        }
+
+        EntityBase {
+            id: enemy
+
+            x: 20//1500
+            y: 900
+
+            entityType: "enemy"
+
+            width: 500
+            height: 500
+
+            EnemyAnimation {
+                id: enemyAnimation
+
+                anchors.centerIn: parent
+
+            }
+            BoxCollider {
+                id: enemyCollider
+
+                height: enemy.height
+                width: enemy.width
+
+                categories: Box.Category2
+                // collide with players
+                collidesWith: gameScene.isNight ? Box.Category1 | Box.Category3 : Box.Category3
+
+
+                bodyType: Body.Dynamic
+                friction: 1.0
+            }
         }
     }
 

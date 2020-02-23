@@ -20,5 +20,6 @@ TiledEntityBase {
 
     anchors.fill: parent
     bodyType: Body.Static
+    categories: Box.Category3
   }
 }
