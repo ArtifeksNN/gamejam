@@ -24,7 +24,7 @@ Item {
                 }
 
                 collider.force = isMoveRight ?
-                            Qt.point(2500, 0) : Qt.point(-2500, 0)
+                            Qt.point(8000, 0) : Qt.point(-8000, 0)
             }
         }
         NumberAnimation { duration: 700; }

@@ -28,9 +28,9 @@ Item {
     }
 
     Platforma {
-        row: 11
+        row: 10
         column: 4
-        size: 7
+        size: 8
     }
 
     Water {
@@ -42,11 +42,11 @@ Item {
     Ground {
         row: 17
         column: 0
-        size: 10
+        size: 20
     }
 
     LevelEnd {
-        row: 28
+        row: 37
         column: 3
         size: 1
     }

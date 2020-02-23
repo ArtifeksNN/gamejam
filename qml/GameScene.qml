@@ -10,6 +10,11 @@ Scene {
 
     property bool isFocusMode: true
     property int offsetBeforeScrollingStarts: 240
+    property bool isNight: true
+
+    onIsNightChanged: {
+        console.log("day night change", isNight)
+    }
 
     width: 960
     height: 640
@@ -49,7 +54,7 @@ Scene {
             id: physicsWorld
 
             gravity.y: 9.81
-            debugDrawVisible: false
+            debugDrawVisible: true
 
             updatesPerSecondForPhysics: 1000
         }

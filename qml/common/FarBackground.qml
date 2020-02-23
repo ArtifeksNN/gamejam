@@ -19,6 +19,14 @@ Item {
 
         radius: width / 2
 
+        onRotationChanged: {
+            if (rotation > 180) {
+                gameScene.isNight = false
+            } else {
+                gameScene.isNight = true
+            }
+        }
+
         Behavior on rotation { NumberAnimation { duration: 10 } }
 
         MultiResolutionImage {
@@ -60,8 +68,8 @@ Item {
     MultiResolutionImage {
         anchors {
             horizontalCenter: parent.horizontalCenter
-//            left: parent.left
-//            right: parent.right
+            //            left: parent.left
+            //            right: parent.right
             bottom: parent.bottom
             bottomMargin: -80
         }
@@ -76,7 +84,13 @@ Item {
         interval: 16
         repeat: true
         running: !isFocusMode
-        onTriggered: skyRect.rotation = skyRect.rotation + 2
+        onTriggered:{
+            if (skyRect.rotation > 360.0) {
+                skyRect.rotation = 0
+            } else {
+                skyRect.rotation = skyRect.rotation + 2
+            }
+        }
     }
 
     Timer {
@@ -85,6 +99,12 @@ Item {
         interval: 16
         repeat: true
         running: isFocusMode
-        onTriggered: skyRect.rotation = skyRect.rotation + 0.01
+        onTriggered: {
+            if (skyRect.rotation > 360.0) {
+                skyRect.rotation = 0
+            } else {
+                skyRect.rotation = skyRect.rotation + 0.01
+            }
+        }
     }
 }
